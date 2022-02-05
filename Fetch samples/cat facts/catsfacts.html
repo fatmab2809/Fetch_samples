@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Facts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body class="text-center">
+    <h1> Cat Fact Generator</h1>
+    <button type="button" id="generate" class="btn btn-primary my-4">Generate</button>
+    <div class="facts"></div>
+
+    <script>
+        document.getElementById('generate').addEventListener('click',getFact);
+        function getFact(e){
+            e.preventDefault();
+            fetch('https://cat-fact.herokuapp.com/facts/random')
+            .then((res) => res.json())
+            .then((data) => {
+                let output = `${data.text}`;
+                document.querySelector('.facts').innerHTML = output;
+            })
+        }
+    </script>
+</body>
+</html>
